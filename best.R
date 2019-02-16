@@ -11,10 +11,10 @@ best <- function(state="TX",outcome="heart attack"){
     hospital_df <- data.frame(state_data[2],state_data[7],state_data[11])
   } else if(outcome == "pneumonia"){
     values_df <- data.frame(state_data[11])
-    hospital_df <- data.frame(state_data[2],state_data[7],state_data[21])
+    hospital_df <- data.frame(state_data[2],state_data[7],state_data[23])
   } else if(outcome == "heart failure"){
     values_df <- data.frame(state_data[11])
-    hospital_df <- data.frame(state_data[2],state_data[7],state_data[15])
+    hospital_df <- data.frame(state_data[2],state_data[7],state_data[17])
   } else {
     stop("invalid outcome")
   }
@@ -23,11 +23,11 @@ best <- function(state="TX",outcome="heart attack"){
   names(hospital_df) <- c("Hospital Name","State",outcome_col)
  # print(hospital_df)
   
-  hospital_df[,3] <- as.numeric(hospital_df[,3])
+  suppressWarnings(hospital_df[,3] <- as.numeric(hospital_df[,3]))
   new_hosp_df <- data.frame()  
   new_hosp_df <- hospital_df[!is.na(hospital_df[,3]),]
   ordered_hosp_df <- data.frame()
   ordered_hosp_df <- new_hosp_df[order(new_hosp_df[,3],new_hosp_df[,1]),]
   
-  ordered_hosp_df[1,]
+  ordered_hosp_df[1,1]
 }
